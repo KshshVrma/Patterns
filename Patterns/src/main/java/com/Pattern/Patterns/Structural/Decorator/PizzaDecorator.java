@@ -1,6 +1,6 @@
 package com.Pattern.Patterns.Structural.Decorator;
 
-public class PizzaDecorator extends BasePizza {
+public abstract class PizzaDecorator implements Pizza {
     Pizza pizza;
     PizzaDecorator(Pizza pizza){
         this.pizza=pizza;
