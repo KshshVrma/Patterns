@@ -20,7 +20,7 @@ public class Function {
                 System.out.println("Thread is running");
             }
         };
-        Thread thread=new Thread(()->{
+        Thread thread=new Thread(new Runnable(){
             @Override
             public void run() {
                 System.out.println(Thread.currentThread().getName());
@@ -31,7 +31,9 @@ public class Function {
                 }
                 System.out.println("Thread is running");
             }
-        });
+        }
+
+        );
         thread.start();
     }
 }
