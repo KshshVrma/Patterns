@@ -3,19 +3,23 @@ package com.Pattern.Patterns.Random.Logger;
 import java.util.ArrayList;
 
 public class LogManager {
-    private ArrayList<LogStrategy> logStrategy;
-    private StrategyFactory strategyFactory = new StrategyFactory();
+    private static ArrayList<LogStrategy> logStrategy;
+    private static StrategyFactory strategyFactory = new StrategyFactory();
 
-    public LogManager() {
-        this.logStrategy = new ArrayList<>();
+    private LogManager() {
+       logStrategy = new ArrayList<>();
     }
 
-void addLogStrategy(LogTo type) {
+    public static LogManager getInstance() {
+        return new LogManager();
+    }
+
+    public static void  addLogStrategy(LogTo type) {
         LogStrategy strategy = strategyFactory.createLogStrategy(type);
-        this.logStrategy.add(strategy);
+        logStrategy.add(strategy);
     }
-    public void log(String message, LogLevel level) {
-        for (LogStrategy logStrategy : this.logStrategy){
+    public static void log(String message, LogLevel level) {
+        for (LogStrategy logStrategy : logStrategy){
             logStrategy.log(message, level);
         }
     }
